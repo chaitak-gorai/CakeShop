@@ -1,0 +1,25 @@
+{
+  "name": "cakeshop_next",
+  "version": "1.0.0",
+  "description": "Ecommerce website",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaitak-gorai/Cakeshop.git"
+  },
+  "author": "Chaitak Gorai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chaitak-gorai/Cakeshop/issues"
+  },
+  "homepage": "https://github.com/chaitak-gorai/Cakeshop#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "expres": "^0.0.5",
+    "express": "^4.18.1"
+  }
+}

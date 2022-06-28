@@ -1,5 +1,6 @@
 {
   "name": "frontend",
+  "proxy": "http://127.0.0.1:5000/",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "next": "12.1.6",
     "react": "18.2.0",
     "react-bootstrap": "^2.4.0",

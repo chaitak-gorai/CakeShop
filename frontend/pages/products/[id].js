@@ -10,8 +10,7 @@ import {
   ListGroupItem,
 } from 'react-bootstrap';
 import Rating from '../../components/Rating';
-import products from '../../products';
-
+import axios from 'axios';
 const ProductScreen = ({ product }) => {
   return (
     <>
@@ -74,6 +73,8 @@ const ProductScreen = ({ product }) => {
 };
 // it estimates the no of path or static files next has to make for this page
 export const getStaticPaths = async () => {
+  const res = await axios.get('http://localhost:5000/api/products');
+  const products = res.data;
   const paths = products.map((product) => ({
     params: {
       id: product._id,
@@ -87,6 +88,8 @@ export const getStaticPaths = async () => {
 // it gets the data for the path and renders the page
 export const getStaticProps = async (context) => {
   const id = context.params.id;
+  const res2 = await axios.get(`http://localhost:5000/api/products`);
+  const products = res2.data;
   const product = products.find((product) => product._id == id);
 
   return {
