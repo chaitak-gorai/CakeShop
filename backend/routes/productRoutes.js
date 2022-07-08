@@ -11,6 +11,7 @@ router.get(
   asyncHandler(async (req, res) => {
     console.log('GET /api/products'.white.inverse)
     const products = await Product.find({})
+
     res.json(products)
     console.log('Fetched all products'.green.inverse)
   })
