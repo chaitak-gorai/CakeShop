@@ -5,34 +5,40 @@ import {
   productReducer,
   productDetailReducer,
 } from './reducers/productReducers'
-import { createWrapper } from 'next-redux-wrapper'
 import { cartReducer } from './reducers/cartReducers'
+import { persistReducer } from 'redux-persist'
+import { persistStore } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+
+//* config for the persistor
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
 const reducer = combineReducers({
   productList: productReducer,
   productDetails: productDetailReducer,
   cart: cartReducer,
 })
 
-const getFromStorage = (key) => {
-  if (typeof window !== 'undefined') {
-    window.localStorage.getItem(key)
-  }
-}
-const cartItemsFromStorage = getFromStorage('cartItems')
-  ? JSON.parse(getFromStorage('cartItems'))
-  : []
+//*we are using the persisted reducer from the redux-persist library
+const persistedReducer = persistReducer(persistConfig, reducer)
 
-const initialState = {
-  cart: {
-    cartItems: [],
-  },
-}
-const store = createStore(
-  reducer,
+//! this can't be used as next is server generated and localstorage is client side
+// const cartItemsFromStorage = getFromStorage('cartItems')
+//   ? JSON.parse(getFromStorage('cartItems'))
+//   : []
+//* this function can be use but only in components to access the localstorage
+// const getFromStorage = (key) => {
+//   if (typeof window !== 'undefined') {
+//     window.localStorage.getItem(key)
+//   }
+// }
+const initialState = {}
+export const store = createStore(
+  persistedReducer,
   initialState,
   composeWithDevTools(applyMiddleware(thunk))
 )
-// const makeStore = () => store
-
-// export const wrapper = createWrapper(makeStore)
-export default store
+export const persistor = persistStore(store)
