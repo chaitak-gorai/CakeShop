@@ -35,7 +35,7 @@ const ProductScreen = () => {
   }, [dispatch, id])
 
   const addToCartHandler = () => {
-    router.push(`/cart/${id}?qty=${qty}`)
+    router.push(`/cart?id=${id}&&qty=${qty}`)
   }
   return (
     <>

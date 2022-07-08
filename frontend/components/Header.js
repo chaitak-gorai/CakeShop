@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import React from 'react'
+import { Container, Nav, Navbar } from 'react-bootstrap'
 
 const Header = () => {
   return (
@@ -10,7 +10,7 @@ const Header = () => {
           <Navbar.Toggle aria-controls='navbarScroll' />
           <Navbar.Collapse id='navbarScroll'>
             <Nav className='ms-auto' style={{ maxHeight: '60px' }} navbarScroll>
-              <Nav.Link href='/cart'>
+              <Nav.Link href='/cart/0'>
                 <i className='fas fa-shopping-cart'></i>Cart
               </Nav.Link>
               <Nav.Link href='/login'>
@@ -25,7 +25,7 @@ const Header = () => {
         </Container>
       </Navbar>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

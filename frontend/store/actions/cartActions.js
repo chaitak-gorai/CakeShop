@@ -14,3 +14,10 @@ export const addToCart = (id, qty) => async (dispatch) => {
     },
   })
 }
+
+export const removeFromCart = (id) => (dispotch) => {
+  dispotch({
+    type: 'REMOVE_FROM_CART',
+    payload: id,
+  })
+}
