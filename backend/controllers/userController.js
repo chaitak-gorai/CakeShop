@@ -86,7 +86,7 @@ const getProfile = asyncHandler(async (req, res) => {
     console.log('Fetched user profile'.green.inverse)
   } else {
     res.status(404)
-    throw new Error('User not found')
+    throw new Error('User not found, Invalid user data')
   }
 })
 export { authUser, getProfile, registerUser }
