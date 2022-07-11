@@ -9,7 +9,12 @@ import { cartReducer } from './reducers/cartReducers'
 import { persistReducer } from 'redux-persist'
 import { persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import { userLoginReducer } from './reducers/userReducers'
+import {
+  userDetailsReducer,
+  userLoginReducer,
+  userRegisterReducer,
+  userUpdateProfileReducer,
+} from './reducers/userReducers'
 
 //* config for the persistor
 const persistConfig = {
@@ -22,6 +27,9 @@ const reducer = combineReducers({
   productDetails: productDetailReducer,
   cart: cartReducer,
   userLogin: userLoginReducer,
+  userRegister: userRegisterReducer,
+  userDetails: userDetailsReducer,
+  userUpdateProfile: userUpdateProfileReducer,
 })
 
 //*we are using the persisted reducer from the redux-persist library
