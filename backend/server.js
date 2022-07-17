@@ -8,7 +8,7 @@ import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import { errorHandler, notFound } from './middlewares/errorMiddleware.js'
 import bodyParser from 'body-parser'
-import { requestInfo } from './middlewares/requestInfo.js'
+import orderRoutes from './routes/orderRoutes.js'
 dotenv.config()
 const app = express()
 // app.use(
@@ -29,6 +29,7 @@ app.get('/', (req, res) => {
 })
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
+app.use('/api/orders', orderRoutes)
 
 //*middleware for no route found
 app.use(notFound)

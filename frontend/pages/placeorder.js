@@ -1,18 +1,43 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import CheckoutSteps from '../components/CheckoutSteps'
 import Message from '../components/Message'
+import { createOrder } from '../store/actions/orderActions'
 
 const placeorder = () => {
   const cart = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
   //calculate total
   cart.itemsPrice = cart.cartItems.reduce((a, c) => a + c.price * c.qty, 0)
   cart.shippingPrice = cart.itemsPrice >= 100 ? 0 : 100
   cart.taxPrice = cart.itemsPrice * 0.1
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice
-  const placeOrderHandler = () => {}
+
+  const orderCreate = useSelector((state) => state.orderCreate)
+  const { order, success, error } = orderCreate
+  const router = useRouter()
+  useEffect(() => {
+    if (success) {
+      router.push(`/orders/${order._id}`)
+    }
+  }, [success])
+
+  const placeOrderHandler = () => {
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        taxPrice: cart.taxPrice,
+        shippingPrice: cart.shippingPrice,
+        totalPrice: cart.totalPrice,
+      })
+    )
+  }
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4 />
@@ -100,12 +125,15 @@ const placeorder = () => {
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
+                {error && <Message color='danger'>{error}</Message>}
+              </ListGroup.Item>
+              <ListGroup.Item>
                 <Button
                   type='button'
                   variant='primary'
                   className='btn-block'
                   disabled={cart.cartItems.length === 0}
-                  onclick={placeOrderHandler}
+                  onClick={placeOrderHandler}
                 >
                   Place Order
                 </Button>
