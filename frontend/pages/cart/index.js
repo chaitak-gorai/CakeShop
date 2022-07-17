@@ -12,7 +12,7 @@ import {
   Row,
 } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import Message from '../../components/message'
+import Message from '../../components/Message.js'
 import { addToCart, removeFromCart } from '../../store/actions/cartActions'
 
 const Cart = () => {
@@ -33,7 +33,7 @@ const Cart = () => {
     dispatch(removeFromCart(id))
   }
   const checkoutHandler = () => {
-    router.push('/login?redirect=/shipping')
+    router.push('/login?redirect=shipping')
   }
   return (
     <Row>
