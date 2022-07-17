@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Col, Row } from 'react-bootstrap'
 import Product from '../components/Product.js'
 import { listProducts } from '../store/actions/productActions.js'
-import Loader from '../components/loader.js'
-import Message from '../components/message.js'
+import Loader from '../components/Loader.js'
+import Message from '../components/Message.js'
 
 const HomeScreen = () => {
   const dispatch = useDispatch()

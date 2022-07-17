@@ -15,11 +15,16 @@ const Login = () => {
   const dispatch = useDispatch()
   const userLogin = useSelector((state) => state.userLogin)
   const { loading, error, userInfo } = userLogin
+  const { redirect } = router.query
   useEffect(() => {
     if (userInfo) {
-      router.push('/')
+      if (redirect) {
+        router.push(`/${redirect}`)
+      } else {
+        router.push('/')
+      }
     }
-  }, [userInfo])
+  }, [userInfo, redirect])
 
   const submitHandler = (e) => {
     e.preventDefault()

@@ -21,6 +21,8 @@ const Cart = () => {
   const { qty } = router.query
   const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart)
+  const user = useSelector((state) => state.userLogin)
+  const { userInfo } = user
   const { loading, error, cartItems } = cart
   useEffect(() => {
     if (id) {
@@ -31,7 +33,7 @@ const Cart = () => {
     dispatch(removeFromCart(id))
   }
   const checkoutHandler = () => {
-    router.push('/')
+    router.push('/login?redirect=/shipping')
   }
   return (
     <Row>

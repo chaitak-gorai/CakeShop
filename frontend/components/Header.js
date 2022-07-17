@@ -18,7 +18,7 @@ const Header = () => {
           <Navbar.Toggle aria-controls='navbarScroll' />
           <Navbar.Collapse id='navbarScroll'>
             <Nav className='ms-auto' style={{ maxHeight: '60px' }} navbarScroll>
-              <Nav.Link href='/cart/0'>
+              <Nav.Link href='/cart'>
                 <i className='fas fa-shopping-cart'></i>Cart
               </Nav.Link>
               {userInfo ? (
