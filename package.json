@@ -34,6 +34,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.1",
     "next-redux-wrapper": "^7.0.5",
+    "paypal": "^1.0.1",
     "redux-persist": "^6.0.0"
   },
   "devDependencies": {
