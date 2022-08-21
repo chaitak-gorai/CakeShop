@@ -1,5 +1,6 @@
 import {
   addOrderItems,
+  getMyOrders,
   getOrderById,
   updateOrderToPaid,
 } from '../controllers/orderController.js'
@@ -9,6 +10,8 @@ import { requestInfo } from '../middlewares/requestInfo.js'
 
 const router = express.Router()
 router.post('/', requestInfo, protect, addOrderItems)
+router.get('/myorders', requestInfo, protect, getMyOrders)
 router.get('/:id', requestInfo, protect, getOrderById)
+
 router.put('/:id/pay', requestInfo, protect, updateOrderToPaid)
 export default router

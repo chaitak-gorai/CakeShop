@@ -16,8 +16,8 @@ const Register = () => {
   const [message, setMessage] = React.useState('')
   const router = useRouter()
   const dispatch = useDispatch()
-  const userRegister = useSelector((state) => state.userRegister)
-  const { loading, error, userInfo } = userRegister
+  const userLogin = useSelector((state) => state.userLogin)
+  const { loading, error, userInfo } = userLogin
   useEffect(() => {
     if (userInfo) {
       router.push('/')
