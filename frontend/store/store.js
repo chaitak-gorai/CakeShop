@@ -10,6 +10,9 @@ import { persistReducer } from 'redux-persist'
 import { persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import {
+  deleteUser,
+  getUsers,
+  updateUser,
   userDetailsReducer,
   userLoginReducer,
   userRegisterReducer,
@@ -21,6 +24,7 @@ import {
   orderListMyReducer,
   orderPayReducer,
 } from './reducers/orderReducers'
+import { getAllUsers } from './actions/userActions'
 
 //* config for the persistor
 const persistConfig = {
@@ -40,6 +44,9 @@ const reducer = combineReducers({
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
   orderListMy: orderListMyReducer,
+  getUsers: getUsers,
+  deleteUser: deleteUser,
+  updateUser: updateUser,
 })
 
 //*we are using the persisted reducer from the redux-persist library

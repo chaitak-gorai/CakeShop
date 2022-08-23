@@ -116,4 +116,82 @@ const updateProfile = asyncHandler(async (req, res) => {
     throw new Error('User not found, Invalid user data')
   }
 })
-export { authUser, getProfile, registerUser, updateProfile }
+
+//@desc Get all users
+//@route GET /api/users
+//@access Private/Admin
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({})
+  if (users) {
+    res.json(users)
+    console.log('Fetched all users '.green.inverse)
+  } else {
+    res.status(404)
+    throw new Error('Users not found, Invalid user data')
+  }
+})
+
+//@desc Delete User
+//@route GET /api/users/:id
+//@access Private/Admin
+const deleteUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id)
+
+  if (user) {
+    await user.remove()
+
+    res.json({ message: 'User deleted successfully' })
+    console.log('Fetched all users '.green.inverse)
+  } else {
+    res.status(404)
+    throw new Error('Users not found, Invalid user data')
+  }
+})
+
+//@desc Get all users
+//@route GET /api/users/:id
+//@access Private/Admin
+const getUserById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select('-password')
+  if (user) {
+    res.json(user)
+    console.log('User Found '.green.inverse)
+  } else {
+    res.status(404)
+    throw new Error('Users not found, Invalid user data')
+  }
+})
+
+//@desc Update user
+//@route PUT /api/users/:id
+//@access Private/Admin
+const updateUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id)
+  if (user) {
+    user.name = req.body.name || user.name
+    user.email = req.body.email || user.email
+    user.isAdmin = req.body.isAdmin
+    const updatedUser = await user.save()
+    res.json({
+      success: true,
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    })
+    console.log('Updated user profile'.green.inverse)
+  } else {
+    res.status(404)
+    throw new Error('User not found, Invalid user data')
+  }
+})
+export {
+  authUser,
+  getProfile,
+  registerUser,
+  updateProfile,
+  getUsers,
+  deleteUser,
+  getUserById,
+  updateUser,
+}
