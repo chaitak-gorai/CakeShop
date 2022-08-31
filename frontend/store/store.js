@@ -4,6 +4,9 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import {
   productReducer,
   productDetailReducer,
+  productDeleteReducer,
+  productCreateReducer,
+  productUpdateReducer,
 } from './reducers/productReducers'
 import { cartReducer } from './reducers/cartReducers'
 import { persistReducer } from 'redux-persist'
@@ -35,6 +38,9 @@ const persistConfig = {
 const reducer = combineReducers({
   productList: productReducer,
   productDetails: productDetailReducer,
+  productDelete: productDeleteReducer,
+  productCreate: productCreateReducer,
+  productUpdate: productUpdateReducer,
   cart: cartReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
